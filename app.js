@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Import routes
-const userRoutes = require('./routes/userRoutes');
+
 app.use('/api/users', userRoutes);
 
 // Start server
