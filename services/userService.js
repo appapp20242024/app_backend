@@ -1,8 +1,6 @@
-// userService.js
-
 const { db } = require('../config/firebaseConfig');
 
-// Lấy tất cả người dùng từ Firestore
+
 const getAllUsers = async () => {
   try {
     const snapshot = await db.collection('users').get();
@@ -23,7 +21,6 @@ const getAllUsers = async () => {
   }
 };
 
-// Tạo người dùng mới trong Firestore
 const createUser = async (data) => {
   const { name, mail, password, address, phone } = data;
 

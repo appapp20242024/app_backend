@@ -1,14 +1,11 @@
-// config/firebaseConfig.js
+var admin = require("firebase-admin");
 
-const admin = require('firebase-admin');
+var serviceAccount = require("./serviceAccountKey.json");
 
-// Thay thế đường dẫn tới tệp serviceAccountKey.json bằng đường dẫn thực tế
-const serviceAccount = require('./serviceAccountKey.json');
-
-// Khởi tạo Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://brain-update-20a9b-default-rtdb.firebaseio.com' // Thay thế <your-project-id> bằng đúng project ID của bạn
+  databaseURL: "https://brain-update-20a9b-default-rtdb.firebaseio.com",
+
 });
 
 // Sử dụng Firestore database (nếu bạn đang dùng Firestore)
