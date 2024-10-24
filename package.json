@@ -4,9 +4,8 @@
   "description": "Backend project using Node.js",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",        
+    "dev": "nodemon --exec babel-node app.js"  
   },
   "author": "Your Name",
   "license": "MIT",
@@ -20,6 +19,9 @@
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.9",
+    "@babel/node": "^7.25.9",
+    "@babel/preset-env": "^7.25.9",
     "nodemon": "^2.0.22"
   },
   "engines": {

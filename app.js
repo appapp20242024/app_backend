@@ -1,18 +1,14 @@
-require('dotenv').config();
+// app.js
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
+const userRoutes = require('./routes/userRoutes');
 
-// Middleware
-app.use(bodyParser.json());
+// Middleware để phân tích dữ liệu JSON từ body của request
+app.use(express.json());
 
-// Import routes
-
+// Sử dụng các route cho API người dùng
 app.use('/api/users', userRoutes);
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
