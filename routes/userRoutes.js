@@ -1,4 +1,4 @@
-// routes/userRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController'); // For user-specific actions
@@ -13,4 +13,9 @@ router.post('/register', authController.registerUser); // User registration
 router.post('/login', authController.loginUser); // User login
 router.put('/update', authController.updateUser); // Update user information
 
+router.delete('/deleteUser/:id', userController.deleteUser);
+
+
+router.put('/updateUser', userController.updateUser);
 module.exports = router;
+
