@@ -1,15 +1,19 @@
 // config/firebaseConfig.js
+require('dotenv').config();
 const admin = require('firebase-admin');
-// Thay thế đường dẫn tới tệp serviceAccountKey.json bằng đường dẫn thực tế
-const serviceAccount = require('./serviceAccountKey.json');
-// Khởi tạo Firebase Admin SDK
+
+// Kiểm tra biến GOOGLE_CREDENTIALS
+if (!process.env.GOOGLE_CREDENTIALS) {
+  console.error('GOOGLE_CREDENTIALS not defined in .env');
+  process.exit(1);
+}
+
+const serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://brain-update-20a9b-default-rtdb.firebaseio.com' // Thay thế <your-project-id> bằng đúng project ID của bạn
+  databaseURL: 'https://brain-update-20a9b-default-rtdb.firebaseio.com',
 });
-// Sử dụng Firestore database (nếu bạn đang dùng Firestore)
+
 const db = admin.firestore();
-// Nếu sử dụng Realtime Database, có thể thêm một dòng để xuất ra DB cho Realtime Database như sau:
-// const realTimeDb = admin.database();
-// Xuất biến db để có thể sử dụng trong các file khác
 module.exports = { db };
