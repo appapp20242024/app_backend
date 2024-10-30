@@ -37,11 +37,12 @@ const createQuizFromFlashcard = async (req, res) => {
         for (let i = 0; i < numberOfQuestions; i++) {
             const flashcard = flashcards[i];
 
-            // Lấy tất cả câu trả lời từ flashcards trong cùng module
+            // Lấy tất cả câu trả lời từ flashcards trong cùng module, giới hạn chỉ 3 options khác
             const otherAnswers = flashcards
                 .filter(fc => fc.id !== flashcard.id) // Loại bỏ câu trả lời của flashcard hiện tại
                 .map(fc => fc.answer) // Lấy câu trả lời của flashcard khác
-                .slice(0, 5); // Giới hạn số lượng answer khác
+                .sort(() => 0.5 - Math.random()) // Trộn ngẫu nhiên
+                .slice(0, 3); // Giới hạn 3 câu trả lời khác
 
             // Tạo danh sách options từ answer và otherAnswers
             const options = [flashcard.answer, ...otherAnswers];
