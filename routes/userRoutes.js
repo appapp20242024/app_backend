@@ -1,13 +1,21 @@
+
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('../controllers/userController'); // For user-specific actions
+const authController = require('../controllers/authController'); // For authentication actions
 
-router.get('/getAllUsers', userController.getAllUsers);
+// User-related routes
+router.get('/getAllUsers', userController.getAllUsers); // Fetch all users
+router.post('/createUser', userController.createUser); // Create a new user
 
-router.post('/createUser', userController.createUser);
+// Authentication-related routes
+router.post('/register', authController.registerUser); // User registration
+router.post('/login', authController.loginUser); // User login
+router.put('/update', authController.updateUser); // Update user information
 
 router.delete('/deleteUser/:id', userController.deleteUser);
 
 
 router.put('/updateUser', userController.updateUser);
 module.exports = router;
+
