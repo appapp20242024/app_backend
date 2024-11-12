@@ -24,15 +24,33 @@ const getUserById = async (req, res) => {
   }
 };
 
-// Controller để cập nhật thông tin người dùng
 const updateUser = async (req, res) => {
-  const userId = req.params.id; // Lấy ID từ route parameter
-  const result = await userService.updateUser(userId, req.body);
+  const userId = req.params.id;  // Lấy ID từ route parameter
+  const updatedData = req.body;
 
-  if (result.status === 200) {
-    return res.status(200).json({ message: result.message });
-  } else {
-    return res.status(result.status).json({ message: result.message });
+  // Lọc ra các trường hợp có giá trị hợp lệ (không phải undefined)
+  const cleanedData = Object.fromEntries(
+    Object.entries(updatedData).filter(([key, value]) => value !== undefined && value !== null)
+  );
+
+  // Kiểm tra nếu không có dữ liệu hợp lệ để cập nhật
+  if (Object.keys(cleanedData).length === 0) {
+    return res.status(400).json({ message: 'No valid data to update. Please provide valid fields.' });
+  }
+
+  try {
+    const result = await userService.updateUser(userId, cleanedData);
+
+    // Kiểm tra kết quả và trả về phản hồi tương ứng
+    if (result.status === 200) {
+      return res.status(200).json({ message: result.message });
+    } else {
+      return res.status(result.status).json({ message: result.message });
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    // Cung cấp thông báo lỗi chi tiết khi có sự cố với server
+    return res.status(500).json({ message: 'Server error while updating user. Please try again later.' });
   }
 };
 

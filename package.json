@@ -22,7 +22,7 @@
     "@babel/core": "^7.25.9",
     "@babel/node": "^7.25.9",
     "@babel/preset-env": "^7.25.9",
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.1.7"
   },
   "engines": {
     "node": ">=14.0.0",

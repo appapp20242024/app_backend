@@ -12,8 +12,8 @@ const serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://brain-update-20a9b-default-rtdb.firebaseio.com',
-});
+  databaseURL: "https://brain-update-20a9b-default-rtdb.firebaseio.com"});
+const auth = admin.auth();
 
 const db = admin.firestore();
-module.exports = { db };
+module.exports = { db, admin,auth };

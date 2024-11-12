@@ -42,7 +42,6 @@ const createUser = async (data) => {
     return {
       status: 201,
       data: {
-        id: newUser.id,
         name,
         mail,
         password,
